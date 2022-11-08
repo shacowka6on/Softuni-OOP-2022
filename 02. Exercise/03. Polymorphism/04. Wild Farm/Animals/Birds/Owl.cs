@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace _04.WildFarm.Animals.Birds
+{
+    public class Owl : Bird
+    {
+        protected override double WeightGain => 0.25;
+        public Owl(string name, double weight, double wingSize)
+            : base(name, weight, wingSize)  
+        {
+
+        }
+        public override string Sound()
+            => "Hoot Hoot";
+
+        public override void Eat(Food food)
+        {
+            if (food.GetType().Name == "Meat")
+            {
+                this.Weight += WeightGain * food.Quantity;
+                this.FoodEaten += food.Quantity;
+            }
+            else
+            {
+                Console.WriteLine($"{this.GetType().Name} does not eat {food.GetType().Name}!");
+            }
+        }
+    }
+}
